@@ -2,8 +2,15 @@ const db = require('mongoose');
 const { Deck, User, Chat } = require('./index.js');
 const axios = require('axios');
 
-const obtainAllUsers = function () {
-  User.find({});
+const obtainAllUsers = () => {
+  User.find({})
+    .then((users) => {
+      console.log('helper', users);
+      return users;
+    })
+    .catch((err) => {
+      err;
+    });
 };
 
 const createUser = function (data) {
@@ -12,7 +19,7 @@ const createUser = function (data) {
 
 
 const findUser = (user, cb) => {
-  User.find({ username: { $regex: `${user}`, $options: 'i' }})
+  User.find({ username: { $regex: `${user}`, $options: 'i' } })
     .then(foundUsers => cb(foundUsers))
     .catch(err => console.log(err));
 };
@@ -67,14 +74,14 @@ const getMarketCards = (cb) => {
     .catch((err) => console.log(err));
 };
 
-const addMessage = (chat, cb)=>{
+const addMessage = (chat, cb) => {
   Chat.create(chat)
     .then(data => cb(data))
     .catch(err => console.log(err));
 };
 
 const getUsersMsg = (id, cb) => {
-  Chat.find({receiver: id})
+  Chat.find({ receiver: id })
     .then(data => cb(data))
     .catch(err => console.log(err));
 };
