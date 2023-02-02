@@ -52,17 +52,17 @@ User.post('/favpokemon/:id', (req, res) => {
   res.status(201).send('work');
 });
 
-//SN: Function to handle request for User data from database request from LeaderBoard
-User.get('/db/users', (req, res) => {
-  obtainAllUsers()
-    .then((userArr) => {
-      console.log(userArr);
-      res.status(201).send(userArr);
-    }).catch((err) => {
-      console.log('GET /db/users', err);
-      res.sendStatus(500);
-    });
-});
+// //SN: Function to handle request for User data from database request from LeaderBoard
+// User.get('/db/users', (req, res) => {
+//   obtainAllUsers()
+//     .then((userArr) => {
+//       console.log(userArr);
+//       res.status(201).send(userArr);
+//     }).catch((err) => {
+//       console.log('GET /db/users', err);
+//       res.sendStatus(500);
+//     });
+// });
 
 
 
